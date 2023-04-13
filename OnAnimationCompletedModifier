@@ -1,0 +1,26 @@
+
+struct OnAnimationCompletedModifier<Value>: AnimatableModifier where Value: VectorArithmetic {
+    var value: Value
+    var callback: () -> Void
+
+    init(_ value: Value, callback: @escaping () -> Void) {
+        self.value = value
+        self.callback = callback
+    }
+
+    var animatableData: Value {
+        get { value }
+        set {
+            value = newValue
+            if value == .zero {
+//                DispatchQueue.main.async {
+                    callback()
+//                }
+            }
+        }
+    }
+
+    func body(content: Content) -> some View {
+        content
+    }
+}
