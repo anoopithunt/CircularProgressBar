@@ -1,0 +1,5 @@
+extension View {
+    func onAnimationCompleted<Value>(for value: Value, perform action: @escaping () -> Void) -> some View where Value: VectorArithmetic {
+        modifier(OnAnimationCompletedModifier(value, callback: action))
+    }
+}
